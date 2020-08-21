@@ -20,14 +20,14 @@ private:
 	const int maxUpdateTime = 200;
 
 	float updateTime = 60;
-	float fruitSpawnTime = 420;
+	float fruitSpawnTime = 1200;
 	float updateTimeA = 0;
 	float fruitSpawnTimeA = 0;
 
 	sf::Vector2u m_fragmentSize;
 	std::vector<Fruit> fruits;
 	std::vector<SnakeFragment> body;
-	std::function<void(float)> updater = [](float deltaTime) {};
+	std::function<void()> updater = []() {};
 
 public:
 	Snake(sf::Vector2u fragmentSize, Setup* gameSetup);

@@ -100,10 +100,8 @@ void Snake::setArcadeUpdater()
 {
 	reset();
 
-	updater = [this](float deltaTime)
+	updater = [this]()
 	{
-		fruitSpawnTimeA += deltaTime;
-
 		if (fruitSpawnTimeA >= fruitSpawnTime)
 		{
 			spawnFruit();
@@ -130,7 +128,7 @@ void Snake::setClassicUpdater()
 {
 	reset();
 
-	updater = [this](float deltaTime)
+	updater = [this]()
 	{
 		if (eaten()) spawnFruit();
 		
@@ -145,11 +143,13 @@ void Snake::setClassicUpdater()
 
 void Snake::update(float deltaTime)
 {
+	deltaTime *= 1000;
 	updateTimeA += deltaTime;
+	fruitSpawnTimeA += deltaTime;
 
 	if (updateTimeA >= updateTime)
 	{
-		updater(deltaTime);
+		updater();
 		updateTimeA -= updateTime;
 	}
 }
@@ -218,7 +218,7 @@ bool Snake::died()
 void Snake::reset()
 {
 	updateTime = 60;
-	fruitSpawnTime = 420;
+	fruitSpawnTime = 1200;
 	updateTimeA = 0;
 	fruitSpawnTimeA = 0;
 

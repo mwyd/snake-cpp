@@ -8,7 +8,7 @@
 #include "GameModeMenu.h"
 #include "Setup.h"
 
-constexpr auto FRAME_LIMIT = 60;
+constexpr auto FRAME_LIMIT = 200;
 
 int main()
 {
@@ -63,7 +63,7 @@ int main()
 		deltaTime = clock.getElapsedTime();
 		clock.restart();
 
-		gameSetup.getStateMachine().getCurrentState()->update(deltaTime.asMilliseconds());
+		gameSetup.getStateMachine().getCurrentState()->update(deltaTime.asSeconds());
 		fps.setString("Fps: " + std::to_string(int(1.f / deltaTime.asSeconds())));
 
 		window.clear();
